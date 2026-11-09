@@ -16,7 +16,7 @@ vim.pack.add({
 	"https://github.com/WTFox/luna.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
-	"https://github.com/m4xshen/autoclose.nvim",
+	-- "https://github.com/m4xshen/autoclose.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
@@ -25,6 +25,7 @@ vim.pack.add({
 	"https://github.com/j-hui/fidget.nvim",
 	"https://github.com/pocco81/auto-save.nvim",
 	"https://github.com/akinsho/toggleterm.nvim",
+    "https://github.com/lewis6991/gitsigns.nvim",
 })
 
 -- theme
@@ -49,7 +50,7 @@ require("lualine").setup({
 })
 
 -- parentheses autoclose
-require("autoclose").setup({})
+-- require("autoclose").setup({})
 
 -- terminal
 require("toggleterm").setup({
@@ -117,3 +118,6 @@ require("fidget").setup({})
 
 -- autosave
 require("auto-save").setup({})
+
+-- git
+require('gitsigns').setup({})
