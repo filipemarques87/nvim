@@ -116,6 +116,16 @@ commander.add({
 	{ desc = "Toggle spell check", cmd = toggle("spell") },
 	{ desc = "Toggle relative numbers", cmd = toggle("relativenumber") },
 	{ desc = "Toggle auto-save", cmd = "<cmd>ASToggle<cr>" },
+	{
+		desc = "Toggle autoclose brackets",
+		cmd = function()
+			-- stored as a number in g:AutocloseDisabled so auto-session persists it
+			vim.g.AutocloseDisabled = vim.g.AutocloseDisabled == 1 and 0 or 1
+			local disabled = vim.g.AutocloseDisabled == 1
+			require("autoclose").setup({ disabled = disabled })
+			vim.notify("autoclose: " .. (disabled and "disabled" or "enabled"))
+		end,
+	},
 }, { cat = "toggle" })
 
 commander.add({

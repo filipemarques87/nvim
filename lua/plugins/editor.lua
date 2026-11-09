@@ -16,7 +16,7 @@ vim.pack.add({
 	"https://github.com/WTFox/luna.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
-	-- "https://github.com/m4xshen/autoclose.nvim",
+	"https://github.com/m4xshen/autoclose.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
@@ -50,7 +50,7 @@ require("lualine").setup({
 })
 
 -- parentheses autoclose
--- require("autoclose").setup({})
+require("autoclose").setup({})
 
 -- terminal
 require("toggleterm").setup({
@@ -111,7 +111,16 @@ vim.api.nvim_create_autocmd("PackChanged", {
 })
 
 -- session
-require("auto-session").setup({})
+-- "globals" saves uppercase g: vars (string/number only) into the session file,
+-- e.g. g:AutocloseDisabled set by the "Toggle autoclose" palette command
+vim.opt.sessionoptions:append("globals")
+require("auto-session").setup({
+	post_restore_cmds = {
+		function()
+			require("autoclose").setup({ disabled = vim.g.AutocloseDisabled == 1 })
+		end,
+	},
+})
 
 -- notifications
 require("fidget").setup({})
